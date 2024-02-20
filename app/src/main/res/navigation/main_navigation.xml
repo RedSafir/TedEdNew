@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listStoryFragment"
-        android:name="com.miftah.tedednew.app.ListStoryFragment"
+        android:name="com.miftah.tedednew.app.main.ListStoryFragment"
         android:label="fragment_list_story"
         tools:layout="@layout/fragment_list_story" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailStoryFragment"
-        android:name="com.miftah.tedednew.app.DetailStoryFragment"
+        android:name="com.miftah.tedednew.app.main.DetailStoryFragment"
         android:label="fragment_detail_story"
         tools:layout="@layout/fragment_detail_story" >
         <argument
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.miftah.tedednew.app.HomeFragment"
+        android:name="com.miftah.tedednew.app.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

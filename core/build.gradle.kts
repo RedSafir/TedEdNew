@@ -10,11 +10,11 @@ apply {
 }
 
 android {
-    namespace = "com.miftah.tededexpert.core"
+    namespace = "com.miftah.core"
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -36,13 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
-
     // Data Preference
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 

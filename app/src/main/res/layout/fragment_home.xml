@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.HomeFragment">
+    tools:context=".app.main.HomeFragment">
 
     <com.miftah.tedednew.app.view.MyButton
         android:id="@+id/action_logout"
