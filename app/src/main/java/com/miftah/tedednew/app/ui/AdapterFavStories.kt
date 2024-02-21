@@ -2,17 +2,16 @@ package com.miftah.tedednew.app.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.miftah.core.domain.model.StoryResult
 import com.miftah.tedednew.databinding.CardStoryBinding
 
-class AdapterCardStories :
-    PagingDataAdapter<StoryResult, AdapterCardStories.ViewHolder>(DIFF_CALLBACK) {
+class AdapterFavStories : ListAdapter<StoryResult, AdapterFavStories.ViewHolder>(DIFF_CALLBACK) {
 
-    private lateinit var onItemClickCallback: OnClickListener
+    private lateinit var onItemClickCallback: IOnClickListener
 
     inner class ViewHolder(val binding: CardStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(listStoryItem: StoryResult) {
@@ -34,20 +33,18 @@ class AdapterCardStories :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val listStoryItem = getItem(position)
-        listStoryItem?.let {
-            holder.bind(it)
-            holder.itemView.setOnClickListener {
-                holder.callCard(listStoryItem)
-            }
+        val friendList = getItem(position)
+        holder.bind(friendList)
+        holder.itemView.setOnClickListener {
+            holder.callCard(friendList)
         }
     }
 
-    fun setOnClickCallback(call: OnClickListener) {
+    fun setOnClickCallback(call: IOnClickListener) {
         this.onItemClickCallback = call
     }
 
-    interface OnClickListener {
+    interface IOnClickListener {
         fun onClickCard(storyResult: StoryResult)
     }
 

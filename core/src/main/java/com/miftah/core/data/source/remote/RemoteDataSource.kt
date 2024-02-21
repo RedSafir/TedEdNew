@@ -9,7 +9,7 @@ import com.miftah.core.domain.model.RegisterResult
 import com.miftah.core.domain.model.StoriesResult
 import com.miftah.core.utils.DataMapper.toLoginResult
 import com.miftah.core.utils.DataMapper.toRegisterResult
-import com.miftah.core.utils.DataMapper.toStoriesResult
+import com.miftah.core.utils.DataMapper.toStoryResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -53,7 +53,7 @@ class RemoteDataSource(private val storyService: StoryService) {
         flow {
             emit(ApiResponse.Loading)
             try {
-                val client = storyService.getStories(page, size).toStoriesResult()
+                val client = storyService.getStories(page, size).toStoryResult()
                 emit(ApiResponse.Success(client))
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()

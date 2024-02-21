@@ -7,6 +7,7 @@ import com.miftah.core.data.source.local.entity.StoriesEntity
 import com.miftah.core.data.source.local.room.RemoteKeysDao
 import com.miftah.core.data.source.local.room.SaveStoriesDao
 import com.miftah.core.data.source.local.room.StoriesDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(
     private val storiesDao: StoriesDao,
@@ -32,9 +33,15 @@ class LocalDataSource(
     fun getAllStories(): PagingSource<Int, StoriesEntity> =
         storiesDao.getAllStories()
 
-    suspend fun deleteSaveStory(story: SavedStoriesEntity) =
-        saveStoriesDao.deleteSaveStory(story)
+    suspend fun deleteSaveStory(id : String) =
+        saveStoriesDao.deleteSaveStory(id)
 
     suspend fun saveStory(story: SavedStoriesEntity) =
         saveStoriesDao.saveStory(story)
+
+    fun isStoryFav(id : String) : Flow<Boolean> =
+        saveStoriesDao.isStoryFav(id)
+
+    fun getAllSavedStories() : Flow<List<SavedStoriesEntity>> =
+        saveStoriesDao.getAllSavedStories()
 }

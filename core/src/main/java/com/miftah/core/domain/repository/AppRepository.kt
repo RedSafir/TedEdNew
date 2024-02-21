@@ -13,4 +13,12 @@ interface AppRepository {
     fun userRegister(name: String, email: String, password: String): Flow<DataResult<RegisterResult>>
 
     fun getAllStories(): Flow<PagingData<StoryResult>>
+
+    suspend fun saveStory(storyResult: StoryResult)
+
+    fun isStorySaved(id : String) : Flow<Boolean>
+
+    fun getAllSavedStories() : Flow<List<StoryResult>>
+
+    suspend fun deleteSavedStories(id : String)
 }

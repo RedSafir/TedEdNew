@@ -28,7 +28,11 @@
             app:argType="string"
             android:defaultValue='""' />
         <argument
-            android:name="desc"
+            android:name="idStory"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="description"
             app:argType="string"
             android:defaultValue='""' />
     </fragment>
@@ -37,4 +41,13 @@
         android:name="com.miftah.tedednew.app.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.miftah.tedednew.app.main.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailStoryFragment"
+            app:destination="@id/detailStoryFragment" />
+    </fragment>
 </navigation>

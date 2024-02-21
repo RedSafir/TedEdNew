@@ -12,7 +12,8 @@ import com.miftah.core.domain.model.RegisterResult
 import com.miftah.core.domain.model.StoryResult
 import com.miftah.core.domain.repository.AppRepository
 import com.miftah.core.utils.DataMapper.mapToDataResult
-import com.miftah.core.utils.DataMapper.toStoriesResult
+import com.miftah.core.utils.DataMapper.toSavedStoriesEntity
+import com.miftah.core.utils.DataMapper.toStoryResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -43,8 +44,24 @@ class AppRepositoryImpl(
             }
         ).flow.map { pagingData ->
             pagingData.map { entity ->
-                entity.toStoriesResult()
+                entity.toStoryResult()
             }
         }
     }
+
+    override suspend fun saveStory(storyResult: StoryResult) =
+        localDataSource.saveStory(storyResult.toSavedStoriesEntity())
+
+    override fun isStorySaved(id: String): Flow<Boolean> =
+        localDataSource.isStoryFav(id)
+
+    override fun getAllSavedStories(): Flow<List<StoryResult>> =
+        localDataSource.getAllSavedStories().map { listStories ->
+            listStories.map { savedStoriesEntity ->
+                savedStoriesEntity.toStoryResult()
+            }
+        }
+
+    override suspend fun deleteSavedStories(id : String) =
+        localDataSource.deleteSaveStory(id)
 }

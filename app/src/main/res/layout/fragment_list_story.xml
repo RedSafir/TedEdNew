@@ -16,17 +16,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/card_story"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:foregroundGravity="bottom"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_add_box_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"

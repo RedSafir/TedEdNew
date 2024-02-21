@@ -3,7 +3,6 @@ package com.miftah.tedednew.app.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -35,16 +34,5 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         val navController = findNavController(R.id.navHost)
         binding.bottomNavigationView.setupWithNavController(navController)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                findNavController(R.id.navHost).popBackStack()
-                true
-            }
-
-            else -> false
-        }
     }
 }

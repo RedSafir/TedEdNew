@@ -40,11 +40,6 @@ class ListStoryFragment : Fragment() {
             adapter.submitData(lifecycle, it)
         }
 
-        binding.fabAdd.setOnClickListener {
-/*            val toAddStoryActivity =
-                ListStoryFragmentDirections.actionNavigationListStoryToAddStoryActivity()
-            findNavController().navigate(toAddStoryActivity)*/
-        }
     }
 
     private fun setupRV() {
@@ -59,13 +54,14 @@ class ListStoryFragment : Fragment() {
         binding.rvStories.addItemDecoration(
             DividerItemDecoration(view?.context, layoutManager.orientation)
         )
-        adapter.setOnClickCallback(object : AdapterCardStories.OnClickListener {
-            override fun onClickCard(friendItem: StoryResult) {
+        adapter.setOnClickCallback(object : AdapterCardStories.OnClickListener{
+            override fun onClickCard(storyResult: StoryResult) {
                 val toDetailStoryFragment =
                     ListStoryFragmentDirections.actionListStoryFragmentToDetailStoryFragment()
-                toDetailStoryFragment.name = friendItem.name
-                toDetailStoryFragment.photoUrl = friendItem.photoUrl
-                toDetailStoryFragment.desc = friendItem.description
+                toDetailStoryFragment.name = storyResult.name
+                toDetailStoryFragment.photoUrl = storyResult.photoUrl
+                toDetailStoryFragment.description = storyResult.description
+                toDetailStoryFragment.idStory = storyResult.id
                 findNavController().navigate(toDetailStoryFragment)
             }
         })

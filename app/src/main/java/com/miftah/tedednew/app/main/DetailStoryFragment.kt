@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.miftah.tedednew.R
 import com.miftah.tedednew.databinding.FragmentDetailStoryBinding
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class DetailStoryFragment : Fragment() {
     private var _binding: FragmentDetailStoryBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: MainViewModel by activityViewModel<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,13 +28,32 @@ class DetailStoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val name = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).name
         val photoUrl = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).photoUrl
-        val description = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).desc
+        val description = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).description
+        val id = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).idStory
 
-        binding.tvDetailName.text = name
-        Glide.with(binding.root)
-            .load(photoUrl)
-            .into(binding.ivDetailPhoto)
-        binding.tvDetailDescription.text = description
+        viewModel.setStory(photoUrl, description, name, id)
+
+        viewModel.storyResult.observe(viewLifecycleOwner) {
+            binding.tvDetailName.text = it.name
+            Glide.with(binding.root)
+                .load(it.photoUrl)
+                .into(binding.ivDetailPhoto)
+            binding.tvDetailDescription.text = it.description
+        }
+
+        viewModel.isStorySave(id).observe(viewLifecycleOwner) {
+            if(it) {
+                binding.fabFav.setImageResource(R.drawable.baseline_favorite_24)
+                binding.fabFav.setOnClickListener {
+                    viewModel.deleteStory()
+                }
+            } else {
+                binding.fabFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                binding.fabFav.setOnClickListener {
+                    viewModel.saveStory()
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

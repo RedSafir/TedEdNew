@@ -18,10 +18,4 @@ data class SavedStoriesEntity(
 
     @ColumnInfo("photoUrl")
     val photoUrl: String,
-
-    @ColumnInfo("lat")
-    val lat: Double? = null,
-
-    @ColumnInfo("lon")
-    val lon: Double? = null,
 )

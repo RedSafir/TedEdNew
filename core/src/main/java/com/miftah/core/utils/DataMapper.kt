@@ -1,6 +1,7 @@
 package com.miftah.core.utils
 
 import com.miftah.core.data.DataResult
+import com.miftah.core.data.source.local.entity.SavedStoriesEntity
 import com.miftah.core.data.source.local.entity.StoriesEntity
 import com.miftah.core.data.source.preference.model.UserModel
 import com.miftah.core.data.source.remote.dto.ListStoryItemResponse
@@ -27,7 +28,25 @@ object DataMapper {
         )
     }
 
-    fun StoriesEntity.toStoriesResult() : StoryResult {
+    fun StoryResult.toSavedStoriesEntity(): SavedStoriesEntity {
+        return SavedStoriesEntity(
+            id = this.id,
+            name = this.name,
+            description = this.description,
+            photoUrl = this.photoUrl,
+        )
+    }
+
+    fun StoriesEntity.toStoryResult() : StoryResult {
+        return StoryResult(
+            id = this.id,
+            name = this.name,
+            description = this.description,
+            photoUrl = this.photoUrl
+        )
+    }
+
+    fun SavedStoriesEntity.toStoryResult() : StoryResult {
         return StoryResult(
             id = this.id,
             name = this.name,
@@ -74,7 +93,7 @@ object DataMapper {
         )
     }
 
-    fun StoriesResponse.toStoriesResult(): StoriesResult {
+    fun StoriesResponse.toStoryResult(): StoriesResult {
         return StoriesResult(
             error = this.error,
             message = this.message,
