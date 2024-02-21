@@ -34,13 +34,13 @@ class AdapterCardStories :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        /*val listStoryItem = getItem(position)
+        val listStoryItem = getItem(position)
         listStoryItem?.let {
             holder.bind(it)
             holder.itemView.setOnClickListener {
                 holder.callCard(listStoryItem)
             }
-        }*/
+        }
     }
 
     fun setOnClickCallback(call: OnClickListener) {

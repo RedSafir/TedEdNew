@@ -48,7 +48,7 @@ class ListStoryFragment : Fragment() {
     }
 
     private fun setupRV() {
-        val layoutManager = LinearLayoutManager(view?.context, RecyclerView.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(view?.context, RecyclerView.VERTICAL, false)
         adapter = AdapterCardStories()
         binding.rvStories.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter {

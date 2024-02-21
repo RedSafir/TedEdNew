@@ -23,7 +23,7 @@ object DataMapper {
             id = this.id,
             name = this.name,
             description = this.description,
-            photoUrl = this.description,
+            photoUrl = this.photoUrl,
         )
     }
 
