@@ -5,17 +5,81 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.miftah.tedednew.R
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.miftah.core.domain.model.StoryResult
+import com.miftah.tedednew.app.ui.AdapterCardStories
+import com.miftah.tedednew.app.ui.LoadingStateAdapter
+import com.miftah.tedednew.databinding.FragmentListStoryBinding
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class ListStoryFragment : Fragment() {
 
+    private var _binding: FragmentListStoryBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var adapter: AdapterCardStories
+    private val viewModel: MainViewModel by activityViewModel<MainViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_story, container, false)
+    ): View {
+        _binding = FragmentListStoryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRV()
+
+        viewModel.getAllStories().observe(viewLifecycleOwner) {
+            adapter.submitData(lifecycle, it)
+        }
+
+        binding.fabAdd.setOnClickListener {
+/*            val toAddStoryActivity =
+                ListStoryFragmentDirections.actionNavigationListStoryToAddStoryActivity()
+            findNavController().navigate(toAddStoryActivity)*/
+        }
+    }
+
+    private fun setupRV() {
+        val layoutManager = LinearLayoutManager(view?.context, RecyclerView.HORIZONTAL, false)
+        adapter = AdapterCardStories()
+        binding.rvStories.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        binding.rvStories.layoutManager = layoutManager
+        binding.rvStories.addItemDecoration(
+            DividerItemDecoration(view?.context, layoutManager.orientation)
+        )
+        adapter.setOnClickCallback(object : AdapterCardStories.OnClickListener {
+            override fun onClickCard(friendItem: StoryResult) {
+                val toDetailStoryFragment =
+                    ListStoryFragmentDirections.actionListStoryFragmentToDetailStoryFragment()
+                toDetailStoryFragment.name = friendItem.name
+                toDetailStoryFragment.photoUrl = friendItem.photoUrl
+                toDetailStoryFragment.desc = friendItem.description
+                findNavController().navigate(toDetailStoryFragment)
+            }
+        })
+    }
+
+    override fun onStart() {
+        adapter.refresh()
+        super.onStart()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

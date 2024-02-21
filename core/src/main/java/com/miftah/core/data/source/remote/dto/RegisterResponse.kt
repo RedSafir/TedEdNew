@@ -2,7 +2,7 @@ package com.miftah.core.data.source.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultResponse(
+data class RegisterResponse(
 
     @field:SerializedName("error")
     val error: Boolean,

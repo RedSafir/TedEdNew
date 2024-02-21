@@ -4,8 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "save_stories")
-data class SaveStories(
+
+@Entity(tableName = "Stories")
+data class StoriesEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: String,
@@ -18,10 +19,4 @@ data class SaveStories(
 
     @ColumnInfo("photoUrl")
     val photoUrl: String,
-
-    @ColumnInfo("lat")
-    val lat: Double? = null,
-
-    @ColumnInfo("lon")
-    val lon: Double? = null,
 )

@@ -8,6 +8,7 @@ import com.miftah.core.data.source.local.room.RemoteKeysDao
 import com.miftah.core.data.source.local.room.SaveStoriesDao
 import com.miftah.core.data.source.local.room.StoriesDao
 import com.miftah.core.data.source.preference.PreferenceDataSourceImpl
+import com.miftah.core.data.source.preference.dataStore
 import com.miftah.core.data.source.remote.RemoteDataSource
 import com.miftah.core.data.source.remote.network.StoryService
 import com.miftah.core.domain.preference.PreferenceDataSource
@@ -92,7 +93,7 @@ val networkModule = module {
 
 val preferenceModule = module {
     single<PreferenceDataSource> {
-        PreferenceDataSourceImpl(androidContext())
+        PreferenceDataSourceImpl(androidContext().dataStore)
     }
 }
 

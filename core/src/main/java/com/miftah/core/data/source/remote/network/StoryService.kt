@@ -1,7 +1,7 @@
 package com.miftah.core.data.source.remote.network
 
 import com.miftah.core.data.source.remote.dto.LoginResponse
-import com.miftah.core.data.source.remote.dto.ResultResponse
+import com.miftah.core.data.source.remote.dto.RegisterResponse
 import com.miftah.core.data.source.remote.dto.StoriesResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -24,7 +24,7 @@ interface StoryService {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): ResultResponse
+    ): RegisterResponse
 
     @GET("stories")
     suspend fun getStories(

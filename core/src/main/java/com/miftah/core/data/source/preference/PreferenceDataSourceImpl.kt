@@ -21,21 +21,20 @@ private val readOnlyProperty = preferencesDataStore(name = "access")
 val Context.dataStore: DataStore<Preferences> by readOnlyProperty
 
 class PreferenceDataSourceImpl(
-    private val context: Context
+    private val dataStore: DataStore<Preferences>
 ) : PreferenceDataSource {
 
     override suspend fun saveSession(user: UserModel) {
-        context.dataStore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences[USER_ID] = user.userId
             preferences[TOKEN_KEY] = user.token
             preferences[USERNAME] = user.username
             preferences[IS_LOGIN_KEY] = true
-            TODO("application context")
         }
     }
 
     override fun getSession(): Flow<UserModel> {
-        return context.dataStore.data.map { preferences ->
+        return dataStore.data.map { preferences ->
             UserModel(
                 preferences[USERNAME] ?: "",
                 preferences[USER_ID] ?: "",
@@ -46,7 +45,7 @@ class PreferenceDataSourceImpl(
     }
 
     override suspend fun logout() {
-        context.dataStore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences.clear()
         }
     }

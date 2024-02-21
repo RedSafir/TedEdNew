@@ -33,7 +33,7 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel {
+    viewModel<MainViewModel> {
         MainViewModel(get(), get(), get())
     }
 }

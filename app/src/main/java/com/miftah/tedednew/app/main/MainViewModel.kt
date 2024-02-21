@@ -16,7 +16,6 @@ class MainViewModel(
     private val logoutSessionCase: LogoutSession,
     private val getAllStoriesCase: GetAllStories
 ) : ViewModel() {
-
     fun getSession(): LiveData<UserModel> = getSessionCase().asLiveData()
 
     fun removeSession() {

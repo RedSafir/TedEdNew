@@ -4,9 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
-@Entity(tableName = "Stories")
-data class Stories(
+@Entity(tableName = "save_stories")
+data class SavedStoriesEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: String,
