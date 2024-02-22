@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TedEdNew</string>
+    <string name="title_sign_up">Mendaftar</string>
+    <string name="title_log_out">Keluar</string>
+    <string name="title_change_language">Ganti Bahasa</string>
+    <string name="timeout">Timeout</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="title_home">Rumah</string>
+    <string name="title_list_story">Baris Cerita</string>
+    <string name="title_username">Nama</string>
+    <string name="err_email">Harus Memasukan Email</string>
+    <string name="title_email">Email</string>
+    <string name="err_password">Panjangnya harus pas atau lebih dari 8</string>
+    <string name="title_password">Password</string>
+    <string name="title_auth">authentication</string>
+    <string name="favorite_button">Tombon Kesukaan</string>
+    <string name="title_favorite_story">Cerita Kesukaan</string>
+</resources>

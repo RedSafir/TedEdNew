@@ -13,7 +13,7 @@
     <string name="err_password">Length must be more than 8</string>
     <string name="title_password">Password</string>
     <string name="title_auth">authentication</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favorite_button">Favorite Button</string>
+    <string name="title_favorite_story">Favorite Story</string>
+    <string name="title_fav">Favorite</string>
 </resources>

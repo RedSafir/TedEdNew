@@ -14,6 +14,8 @@ class WelcomeViewModel(
     private val userLogin: UserLogin,
     private val saveSession: SaveSession
 ) : ViewModel() {
+
+
     fun userRegis(email: String, username: String, password: String) =
         userRegister(name = username, email = email, password = password).asLiveData()
 

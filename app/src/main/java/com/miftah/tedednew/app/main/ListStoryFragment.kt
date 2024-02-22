@@ -57,11 +57,12 @@ class ListStoryFragment : Fragment() {
         adapter.setOnClickCallback(object : AdapterCardStories.OnClickListener{
             override fun onClickCard(storyResult: StoryResult) {
                 val toDetailStoryFragment =
-                    ListStoryFragmentDirections.actionListStoryFragmentToDetailStoryFragment()
-                toDetailStoryFragment.name = storyResult.name
-                toDetailStoryFragment.photoUrl = storyResult.photoUrl
-                toDetailStoryFragment.description = storyResult.description
-                toDetailStoryFragment.idStory = storyResult.id
+                    ListStoryFragmentDirections.actionListStoryFragmentToDetailStoryFragment().apply {
+                        this.name = storyResult.name
+                        this.photoUrl = storyResult.photoUrl
+                        this.description = storyResult.description
+                        this.idStory = storyResult.id
+                    }
                 findNavController().navigate(toDetailStoryFragment)
             }
         })

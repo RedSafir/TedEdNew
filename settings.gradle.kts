@@ -17,3 +17,4 @@ rootProject.name = "TedEdNew"
 include(":app")
 include(":core")
 include(":auth")
+include(":fav")

@@ -51,11 +51,12 @@ class FavoriteFragment : Fragment() {
         adapter.setOnClickCallback(object : AdapterFavStories.IOnClickListener {
             override fun onClickCard(storyResult: StoryResult) {
                 val toDetailStoryFragment =
-                    FavoriteFragmentDirections.actionFavoriteFragmentToDetailStoryFragment()
-                toDetailStoryFragment.name = storyResult.name
-                toDetailStoryFragment.photoUrl = storyResult.photoUrl
-                toDetailStoryFragment.description = storyResult.description
-                toDetailStoryFragment.idStory = storyResult.id
+                    FavoriteFragmentDirections.actionFavoriteFragmentToDetailStoryFragment().apply {
+                        this.name = storyResult.name
+                        this.photoUrl = storyResult.photoUrl
+                        this.description = storyResult.description
+                        this.idStory = storyResult.id
+                    }
                 findNavController().navigate(toDetailStoryFragment)
             }
         })
