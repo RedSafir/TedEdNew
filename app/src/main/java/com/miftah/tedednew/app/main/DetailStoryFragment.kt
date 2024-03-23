@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.miftah.tedednew.R
 import com.miftah.tedednew.databinding.FragmentDetailStoryBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -26,7 +24,7 @@ class DetailStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).name
+        /*val name = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).name
         val photoUrl = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).photoUrl
         val description = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).description
         val id = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).idStory
@@ -53,7 +51,7 @@ class DetailStoryFragment : Fragment() {
                     viewModel.saveStory()
                 }
             }
-        }
+        }*/
     }
 
     override fun onDestroy() {

@@ -9,45 +9,10 @@
         android:id="@+id/listStoryFragment"
         android:name="com.miftah.tedednew.app.main.ListStoryFragment"
         android:label="fragment_list_story"
-        tools:layout="@layout/fragment_list_story" >
-        <action
-            android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
-            app:destination="@id/detailStoryFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailStoryFragment"
-        android:name="com.miftah.tedednew.app.main.DetailStoryFragment"
-        android:label="fragment_detail_story"
-        tools:layout="@layout/fragment_detail_story" >
-        <argument
-            android:name="name"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="photoUrl"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="idStory"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="description"
-            app:argType="string"
-            android:defaultValue='""' />
-    </fragment>
+        tools:layout="@layout/fragment_list_story" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.miftah.tedednew.app.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.miftah.tedednew.app.main.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_detailStoryFragment"
-            app:destination="@id/detailStoryFragment" />
-    </fragment>
 </navigation>

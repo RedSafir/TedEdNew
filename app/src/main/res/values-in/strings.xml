@@ -16,4 +16,8 @@
     <string name="title_auth">authentication</string>
     <string name="favorite_button">Tombon Kesukaan</string>
     <string name="title_favorite_story">Cerita Kesukaan</string>
+    <string name="title_fav">Favorite</string>
+    <string name="title_detail">DetailStory</string>
+    <string name="title_activity_detail_story">DetailStoryActivity</string>
+    <string name="favorite">Favorite</string>
 </resources>

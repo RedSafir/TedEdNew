@@ -8,7 +8,7 @@ apply {
 }
 
 android {
-    namespace = "com.miftah.tedednew.fav"
+    namespace = "com.miftah.detail"
     compileSdk = 34
 
     defaultConfig {
@@ -25,21 +25,19 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
         viewBinding = true
-        buildConfig = true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(project(":app"))
+    implementation(project(":core"))
 }

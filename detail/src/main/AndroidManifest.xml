@@ -4,7 +4,7 @@
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_fav">
+        dist:title="@string/title_detail">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
@@ -14,13 +14,13 @@
 
     <application>
         <activity
-            android:name=".FavoriteStoryActivity"
+            android:name=".DetailStoryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:host="fav"
+                    android:host="detail"
                     android:scheme="tedednew" />
             </intent-filter>
         </activity>

@@ -5,11 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.miftah.core.domain.model.StoryResult
-import com.miftah.tedednew.app.ui.AdapterFavStories
 import com.miftah.tedednew.databinding.FragmentFavoriteBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -20,7 +15,7 @@ class FavoriteFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModel<MainViewModel>()
 
-    private lateinit var adapter: AdapterFavStories
+//    private lateinit var adapter: com.miftah.tedednew.fav.ui.AdapterFavStories
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,30 +31,30 @@ class FavoriteFragment : Fragment() {
         setupRv()
 
         viewModel.getAllSavedStories().observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+//            adapter.submitList(it)
         }
     }
 
     private fun setupRv() {
-        val layoutManager = LinearLayoutManager(requireContext())
-        adapter = AdapterFavStories()
+        /*val layoutManager = LinearLayoutManager(requireContext())
+        adapter = com.miftah.tedednew.fav.ui.AdapterFavStories()
         binding.rvFavStories.adapter = adapter
         binding.rvFavStories.layoutManager = layoutManager
         binding.rvFavStories.addItemDecoration(
             DividerItemDecoration(requireContext(), layoutManager.orientation)
         )
-        adapter.setOnClickCallback(object : AdapterFavStories.IOnClickListener {
+        adapter.setOnClickCallback(object : com.miftah.tedednew.fav.ui.AdapterFavStories.IOnClickListener {
             override fun onClickCard(storyResult: StoryResult) {
-                val toDetailStoryFragment =
+                *//*val toDetailStoryFragment =
                     FavoriteFragmentDirections.actionFavoriteFragmentToDetailStoryFragment().apply {
                         this.name = storyResult.name
                         this.photoUrl = storyResult.photoUrl
                         this.description = storyResult.description
                         this.idStory = storyResult.id
                     }
-                findNavController().navigate(toDetailStoryFragment)
+                findNavController().navigate(toDetailStoryFragment)*//*
             }
-        })
+        })*/
     }
 
     override fun onDestroy() {

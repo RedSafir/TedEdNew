@@ -1,4 +1,4 @@
-package com.miftah.tedednew.app.main
+package com.miftah.tedednew.fav
 
 import android.content.Intent
 import android.net.Uri
@@ -9,60 +9,54 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.miftah.core.domain.model.StoryResult
 import com.miftah.core.utils.Constants
-import com.miftah.tedednew.app.ui.AdapterCardStories
-import com.miftah.tedednew.app.ui.LoadingStateAdapter
-import com.miftah.tedednew.databinding.FragmentListStoryBinding
+import com.miftah.tedednew.fav.databinding.FragmentFavoriteStoryBinding
+import com.miftah.tedednew.fav.ui.AdapterFavStories
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
+class FavoriteStoryFragment : Fragment() {
 
-class ListStoryFragment : Fragment() {
 
-    private var _binding: FragmentListStoryBinding? = null
+    private var _binding : FragmentFavoriteStoryBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: AdapterCardStories
-    private val viewModel: MainViewModel by activityViewModel<MainViewModel>()
+
+    private val viewModel: FavoriteStoryViewModel by activityViewModel<FavoriteStoryViewModel>()
+
+    private lateinit var adapter: AdapterFavStories
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListStoryBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteStoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRV()
+        setupRv()
 
-        viewModel.getAllStories().observe(viewLifecycleOwner) {
-            adapter.submitData(lifecycle, it)
+        viewModel.getAllSavedStories().observe(viewLifecycleOwner) {
+            adapter.submitList(it)
         }
-
     }
 
-    private fun setupRV() {
-        val layoutManager = LinearLayoutManager(view?.context, RecyclerView.VERTICAL, false)
-        adapter = AdapterCardStories()
-        binding.rvStories.adapter = adapter.withLoadStateFooter(
-            footer = LoadingStateAdapter {
-                adapter.retry()
-            }
+    private fun setupRv() {
+        val layoutManager = LinearLayoutManager(requireContext())
+        adapter = AdapterFavStories()
+        binding.rvFavStories.adapter = adapter
+        binding.rvFavStories.layoutManager = layoutManager
+        binding.rvFavStories.addItemDecoration(
+            DividerItemDecoration(requireContext(), layoutManager.orientation)
         )
-        binding.rvStories.layoutManager = layoutManager
-        binding.rvStories.addItemDecoration(
-            DividerItemDecoration(view?.context, layoutManager.orientation)
-        )
-        adapter.setOnClickCallback(object : AdapterCardStories.OnClickListener {
+        adapter.setOnClickCallback(object : AdapterFavStories.IOnClickListener {
             override fun onClickCard(storyResult: StoryResult) {
                 val name = storyResult.name
                 val photoUrl = storyResult.photoUrl
                 val description = storyResult.description
                 val idStory = storyResult.id
-
                 val data =
                     Uri.parse("tedednew://detail?${Constants.STORY_ID}=$idStory&${Constants.STORY_PHOTO_URL}=$photoUrl&${Constants.STORY_DESCRIPTION}=$description&${Constants.STORY_TITLE}=$name")
                 startActivity(Intent(Intent.ACTION_VIEW, data))
@@ -70,15 +64,10 @@ class ListStoryFragment : Fragment() {
         })
     }
 
-    override fun onStart() {
-        adapter.refresh()
-        super.onStart()
-    }
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
 
 }

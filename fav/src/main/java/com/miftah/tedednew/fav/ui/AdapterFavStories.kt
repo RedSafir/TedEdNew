@@ -1,4 +1,4 @@
-package com.miftah.tedednew.app.ui
+package com.miftah.tedednew.fav.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

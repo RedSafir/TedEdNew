@@ -1,7 +1,6 @@
 package com.miftah.core.data
 
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState.Loading.endOfPaginationReached
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
@@ -12,7 +11,6 @@ import com.miftah.core.data.source.remote.RemoteDataSource
 import com.miftah.core.data.source.remote.network.ApiResponse
 import com.miftah.core.utils.DataMapper.toStoriesEntity
 import retrofit2.HttpException
-import timber.log.Timber
 
 @OptIn(ExperimentalPagingApi::class)
 class StoryRemoteMediator(
@@ -31,7 +29,6 @@ class StoryRemoteMediator(
         val page = when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                Timber.d("Refresh")
                 remoteKeys?.nextKey?.minus(1) ?: INITIAL_PAGE_INDEX
             }
 
@@ -51,12 +48,13 @@ class StoryRemoteMediator(
         }
 
         try {
+            var endOfPaginationReached = false
             remoteDataSource.getStories(page, state.config.pageSize)
                 .collect { value ->
                     when (value) {
                         is ApiResponse.Success -> {
                             val listStory = value.data.story
-                            val endOfPaginationReached = listStory.isEmpty()
+                            endOfPaginationReached = listStory.isEmpty()
 
                             if (loadType == LoadType.REFRESH) {
                                 localDataSource.deleteRemoteKeys()
