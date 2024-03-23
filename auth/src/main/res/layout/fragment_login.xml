@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".LoginFragment">
 
     <TextView
         android:id="@+id/tv_title_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/title_login"
         android:layout_marginTop="32dp"
-        android:textStyle="bold"
-        android:textSize="24sp"
         android:alpha="0"
-        tools:alpha="1"
+        android:text="@string/title_login"
         android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorizontal2"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontal2"
+        tools:alpha="1" />
 
     <ImageView
         android:id="@+id/tv_img_title"
@@ -27,12 +27,12 @@
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:alpha="0"
-        tools:alpha="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/title_ted_ed"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/title_ted_ed"
+        tools:alpha="1" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -50,12 +50,12 @@
         android:id="@+id/tv_title_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_email"
-        android:alpha="0"
-        tools:alpha="1"
         android:layout_marginHorizontal="32dp"
+        android:alpha="0"
+        android:text="@string/title_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_login"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_login"
+        tools:alpha="1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
@@ -65,33 +65,33 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:alpha="0"
-        tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_email">
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_email"
+        tools:alpha="1">
 
-        <com.miftah.tedednew.app.view.EmailEditText
+        <com.miftah.ui.EmailEditText
             android:id="@+id/ed_login_email"
-            android:alpha="0"
-            tools:alpha="1"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:alpha="0"
+            android:drawableStart="@drawable/baseline_email_24"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:drawableStart="@drawable/baseline_email_24"/>
+            tools:alpha="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tv_title_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_password"
-        android:alpha="0"
-        tools:alpha="1"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        android:text="@string/title_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout"/>
+        app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout"
+        tools:alpha="1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
@@ -104,31 +104,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_password">
 
-        <com.miftah.tedednew.app.view.PasswordEditText
+        <com.miftah.ui.PasswordEditText
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:alpha="0"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:inputType="textPassword"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:alpha="0"
-            tools:alpha="1"
-            android:inputType="textPassword"
-            android:drawableStart="@drawable/baseline_lock_24"/>
+            tools:alpha="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.miftah.tedednew.app.view.MyButton
+    <com.miftah.ui.MyButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/title_login"
-        android:enabled="false"
         android:alpha="0"
-        tools:alpha="1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:enabled="false"
+        android:text="@string/title_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
+        tools:alpha="1" />
 
     <ProgressBar
         android:id="@+id/progressBar"

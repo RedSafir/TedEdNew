@@ -16,6 +16,8 @@ dependencyResolutionManagement {
 rootProject.name = "TedEdNew"
 include(":app")
 include(":core")
-include(":auth")
+include(":authentication")
 include(":fav")
 include(":detail")
+include(":auth")
+include(":ui")

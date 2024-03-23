@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.miftah.tedednew.auth.OnboardingFragment"
+        android:name="com.miftah.auth.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.miftah.tedednew.auth.LoginFragment"
+        android:name="com.miftah.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.miftah.tedednew.auth.SignupFragment"
+        android:name="com.miftah.auth.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
 </navigation>

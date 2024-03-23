@@ -42,7 +42,7 @@ android {
         viewBinding = true
         buildConfig = true
     }
-    dynamicFeatures += setOf(":auth", ":fav", ":detail")
+    dynamicFeatures += setOf(":authentication", ":fav", ":detail")
 }
 
 dependencies {
