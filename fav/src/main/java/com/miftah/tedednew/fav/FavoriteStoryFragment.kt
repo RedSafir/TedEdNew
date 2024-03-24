@@ -64,10 +64,10 @@ class FavoriteStoryFragment : Fragment() {
         })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvFavStories.adapter = null
         _binding = null
     }
-
 
 }

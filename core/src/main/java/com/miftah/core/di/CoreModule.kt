@@ -8,13 +8,15 @@ import com.miftah.core.data.source.local.room.RemoteKeysDao
 import com.miftah.core.data.source.local.room.SaveStoriesDao
 import com.miftah.core.data.source.local.room.StoriesDao
 import com.miftah.core.data.source.preference.PreferenceDataSourceImpl
-import com.miftah.core.data.source.preference.dataStore
 import com.miftah.core.data.source.remote.RemoteDataSource
 import com.miftah.core.data.source.remote.network.StoryService
 import com.miftah.core.domain.preference.PreferenceDataSource
 import com.miftah.core.domain.repository.AppRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,11 +29,15 @@ import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
     single<AppDatabase> {
+        val passphrase : ByteArray = SQLiteDatabase.getBytes("appdatabase".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             AppDatabase::class.java,
-            "Tourism.db"
-        ).fallbackToDestructiveMigration().build()
+            "appDatabase.db"
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
     factory<RemoteKeysDao> {
         get<AppDatabase>().remoteKeysDao()
@@ -71,11 +77,17 @@ val networkModule = module {
         }
     }
     factory<OkHttpClient> {
+        val hostname = "story-api.dicoding.dev"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/W7Dw4CG+jbu1OcLeSKaV63CFGMtj3ncuBKt/5eqNA7k=")
+            .add(hostname, "sha256/jQJTbIh0grw0/1TkHSumWb+Fs0Ggogr621gT3PvPKG0=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>())
+            .addInterceptor(get<Interceptor>())
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
-            .addInterceptor(get<Interceptor>())
+            .certificatePinner(certificatePinner)
             .build()
     }
     factory {
@@ -93,7 +105,7 @@ val networkModule = module {
 
 val preferenceModule = module {
     single<PreferenceDataSource> {
-        PreferenceDataSourceImpl(androidContext().dataStore)
+        PreferenceDataSourceImpl(androidContext())
     }
 }
 

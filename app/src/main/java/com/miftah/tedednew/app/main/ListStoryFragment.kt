@@ -75,9 +75,9 @@ class ListStoryFragment : Fragment() {
         super.onStart()
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvStories.adapter = null
         _binding = null
     }
 

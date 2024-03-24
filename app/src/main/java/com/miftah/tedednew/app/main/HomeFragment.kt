@@ -1,6 +1,7 @@
 package com.miftah.tedednew.app.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -27,14 +28,17 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.actionLogout.setOnClickListener {
             viewModel.removeSession()
+            val uri = Uri.parse("tedednew://auth")
+            startActivity(Intent(Intent.ACTION_VIEW, uri))
+            activity?.finish()
         }
         binding.actionChangeLang.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
-
     }
 
     private fun setupBottomNav() {

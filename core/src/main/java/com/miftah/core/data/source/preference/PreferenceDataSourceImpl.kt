@@ -1,59 +1,75 @@
 package com.miftah.core.data.source.preference
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
+import android.content.SharedPreferences
+import android.os.Build
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import com.miftah.core.data.source.preference.model.UserModel
 import com.miftah.core.domain.preference.PreferenceDataSource
 import com.miftah.core.utils.Constants.DATA_STORAGE_PREFERENCE_IS_LOGIN
 import com.miftah.core.utils.Constants.DATA_STORAGE_PREFERENCE_TOKEN
 import com.miftah.core.utils.Constants.DATA_STORAGE_PREFERENCE_USERNAME
 import com.miftah.core.utils.Constants.DATA_STORAGE_PREFERENCE_USER_ID
+import com.securepreferences.SecurePreferences
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-
-private val readOnlyProperty = preferencesDataStore(name = "access")
-
-val Context.dataStore: DataStore<Preferences> by readOnlyProperty
+import kotlinx.coroutines.flow.flow
 
 class PreferenceDataSourceImpl(
-    private val dataStore: DataStore<Preferences>
+    context: Context
 ) : PreferenceDataSource {
 
+    private var pref: SharedPreferences = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val spec = KeyGenParameterSpec.Builder(
+            MasterKey.DEFAULT_MASTER_KEY_ALIAS,
+            KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+        )
+            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            .setKeySize(MasterKey.DEFAULT_AES_GCM_MASTER_KEY_SIZE)
+            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            .build()
+        val masterKey = MasterKey.Builder(context)
+            .setKeyGenParameterSpec(spec)
+            .build()
+        EncryptedSharedPreferences
+            .create(
+                context,
+                "Session",
+                masterKey,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+    } else {
+        SecurePreferences(context)
+    }
+
+    private var editor: SharedPreferences.Editor = pref.edit()
+
     override suspend fun saveSession(user: UserModel) {
-        dataStore.edit { preferences ->
-            preferences[USER_ID] = user.userId
-            preferences[TOKEN_KEY] = user.token
-            preferences[USERNAME] = user.username
-            preferences[IS_LOGIN_KEY] = true
+        editor.apply {
+            this.putString(DATA_STORAGE_PREFERENCE_USER_ID, user.userId)
+            this.putString(DATA_STORAGE_PREFERENCE_TOKEN, user.token)
+            this.putString(DATA_STORAGE_PREFERENCE_USERNAME, user.username)
+            this.putBoolean(DATA_STORAGE_PREFERENCE_IS_LOGIN, true)
+            this.commit()
         }
     }
 
-    override fun getSession(): Flow<UserModel> {
-        return dataStore.data.map { preferences ->
+    override fun getSession(): Flow<UserModel> = flow {
+        emit(
             UserModel(
-                preferences[USERNAME] ?: "",
-                preferences[USER_ID] ?: "",
-                preferences[TOKEN_KEY] ?: "",
-                preferences[IS_LOGIN_KEY] ?: false
+                username = pref.getString(DATA_STORAGE_PREFERENCE_USERNAME, "") ?: "",
+                userId = pref.getString(DATA_STORAGE_PREFERENCE_USER_ID, "") ?: "",
+                token = pref.getString(DATA_STORAGE_PREFERENCE_TOKEN, "") ?: "",
+                isLogin = pref.getBoolean(DATA_STORAGE_PREFERENCE_IS_LOGIN, false)
             )
-        }
+        )
     }
 
     override suspend fun logout() {
-        dataStore.edit { preferences ->
-            preferences.clear()
-        }
-    }
-
-    private companion object {
-        private val USERNAME = stringPreferencesKey(DATA_STORAGE_PREFERENCE_USERNAME)
-        private val USER_ID = stringPreferencesKey(DATA_STORAGE_PREFERENCE_USER_ID)
-        private val TOKEN_KEY = stringPreferencesKey(DATA_STORAGE_PREFERENCE_TOKEN)
-        private val IS_LOGIN_KEY = booleanPreferencesKey(DATA_STORAGE_PREFERENCE_IS_LOGIN)
+        editor.clear()
+        editor.commit()
     }
 }
