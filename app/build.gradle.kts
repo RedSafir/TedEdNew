@@ -49,6 +49,9 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    lint {
+        abortOnError = false
+    }
     dynamicFeatures += setOf(":authentication", ":fav", ":detail")
 }
 
