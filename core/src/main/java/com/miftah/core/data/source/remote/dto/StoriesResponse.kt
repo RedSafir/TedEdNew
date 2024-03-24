@@ -1,7 +1,9 @@
 package com.miftah.core.data.source.remote.dto
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class StoriesResponse(
 
 	@field:SerializedName("listStory")
@@ -14,6 +16,7 @@ data class StoriesResponse(
 	val message: String = ""
 )
 
+@Keep
 data class ListStoryItemResponse(
 
 	@field:SerializedName("photoUrl")

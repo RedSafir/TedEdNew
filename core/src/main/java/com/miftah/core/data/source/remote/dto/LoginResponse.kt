@@ -1,7 +1,9 @@
 package com.miftah.core.data.source.remote.dto
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class LoginResponse(
 
 	@field:SerializedName("loginResult")
@@ -14,7 +16,7 @@ data class LoginResponse(
 	val message: String
 )
 
-
+@Keep
 data class LoginResultResponse(
 
 	@field:SerializedName("name")
