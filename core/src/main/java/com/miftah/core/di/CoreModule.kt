@@ -78,7 +78,7 @@ val networkModule = module {
     }
     factory<OkHttpClient> {
         val hostname = "story-api.dicoding.dev"
-        val certificatePinner = CertificatePinner.Builder()
+        val certificateSPinner = CertificatePinner.Builder()
             .add(hostname, "sha256/W7Dw4CG+jbu1OcLeSKaV63CFGMtj3ncuBKt/5eqNA7k=")
             .add(hostname, "sha256/jQJTbIh0grw0/1TkHSumWb+Fs0Ggogr621gT3PvPKG0=")
             .build()
@@ -87,7 +87,7 @@ val networkModule = module {
             .addInterceptor(get<Interceptor>())
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
-            .certificatePinner(certificatePinner)
+            .certificatePinner(certificateSPinner)
             .build()
     }
     factory {

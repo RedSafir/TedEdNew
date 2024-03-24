@@ -101,3 +101,6 @@
 
 # Uncomment for DexGuard only
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+
+#-------------------------------- Custome View -------------------------------------
+-keep com.miftah.tedednew.app.view.**
