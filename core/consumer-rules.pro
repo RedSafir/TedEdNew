@@ -103,4 +103,4 @@
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 #-------------------------------- Custome View -------------------------------------
--keep com.miftah.tedednew.app.view.**
+-keep class com.miftah.tedednew.app.view.** { *; }
