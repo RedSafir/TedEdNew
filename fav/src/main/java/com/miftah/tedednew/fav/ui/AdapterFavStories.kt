@@ -13,7 +13,7 @@ class AdapterFavStories : ListAdapter<StoryResult, AdapterFavStories.ViewHolder>
 
     private lateinit var onItemClickCallback: IOnClickListener
 
-    inner class ViewHolder(val binding: CardStoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: CardStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(listStoryItem: StoryResult) {
             Glide.with(binding.root)
                 .load(listStoryItem.photoUrl)

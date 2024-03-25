@@ -51,7 +51,7 @@ dependencies {
 
     // flow
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     // liveData
     api("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")

@@ -50,6 +50,6 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     viewModel<MainViewModel> {
-        MainViewModel(get(), get(), get(), get(), get(), get(), get())
+        MainViewModel(get(), get(), get())
     }
 }

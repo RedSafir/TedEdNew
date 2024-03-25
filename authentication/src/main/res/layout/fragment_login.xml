@@ -32,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/title_ted_ed"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/login_image" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -44,7 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
-        app:srcCompat="@drawable/image_login" />
+        app:srcCompat="@drawable/image_login"
+        android:contentDescription="@string/main_image" />
 
     <TextView
         android:id="@+id/tv_title_email"
@@ -70,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_email">
 
-        <com.miftah.tedednew.app.view.EmailEditText
+        <com.miftah.tedednew.auth.view.EmailEditText
             android:id="@+id/ed_login_email"
             android:alpha="0"
             tools:alpha="1"
@@ -104,7 +106,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_password">
 
-        <com.miftah.tedednew.app.view.PasswordEditText
+        <com.miftah.tedednew.auth.view.PasswordEditText
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -116,7 +118,7 @@
             android:drawableStart="@drawable/baseline_lock_24"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.miftah.tedednew.app.view.MyButton
+    <com.miftah.tedednew.auth.view.MyButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

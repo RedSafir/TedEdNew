@@ -1,3 +1,4 @@
 <resources>
-    <string name="title_activity_detail_story">Detail Story</string>
+    <string name="image_detail">image detail</string>
+    <string name="favorite_button">favorite button</string>
 </resources>

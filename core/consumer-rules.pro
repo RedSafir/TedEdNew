@@ -106,3 +106,9 @@
 -keep class com.miftah.tedednew.app.view.** {
     public *;
  }
+-keep class com.miftah.tedednew.auth.view.** {
+ public *;
+}
+-keep class com.miftah.tedednew.fav.ui.** {
+ public *;
+}

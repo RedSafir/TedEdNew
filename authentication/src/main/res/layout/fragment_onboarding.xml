@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ted_ed"/>
+        app:srcCompat="@drawable/ted_ed"
+        android:contentDescription="@string/onboarding_image" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -37,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
-    <com.miftah.tedednew.app.view.MyButton
+    <com.miftah.tedednew.auth.view.MyButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"/>
 
-    <com.miftah.tedednew.app.view.MyButton
+    <com.miftah.tedednew.auth.view.MyButton
         android:id="@+id/btn_signup"
         android:layout_width="0dp"
         android:layout_marginHorizontal="20dp"

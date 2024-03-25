@@ -1,4 +1,4 @@
-package com.miftah.tedednew.app.view
+package com.miftah.tedednew.auth.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.miftah.tedednew.R
 
-class EmailEditText : AppCompatEditText{
+class PasswordEditText : AppCompatEditText{
 
     constructor(context: Context) : super(context) {
 
@@ -27,30 +27,23 @@ class EmailEditText : AppCompatEditText{
     }
 
     init {
+
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // Do nothing.
             }
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 val input = s.toString()
-                if (!isValidEmail(input) && input.isNotEmpty()) error = context.resources.getString(
-                    R.string.err_email)
+                if (input.length < 8 && input.isNotEmpty()) error = context.resources.getString(R.string.err_password)
             }
-
             override fun afterTextChanged(s: Editable) {
                 // Do nothing.
             }
         })
     }
 
-    fun isValidEmail(input : CharSequence) : Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = context.resources.getString(R.string.title_email)
+        hint = context.resources.getString(R.string.title_password)
     }
-
 }

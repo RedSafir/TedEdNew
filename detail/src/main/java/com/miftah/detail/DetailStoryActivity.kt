@@ -29,7 +29,7 @@ class DetailStoryActivity : AppCompatActivity() {
 
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(binding.favFragmentContainer.id, DetailStoryFragment())
+            add(R.id.detail_fragment_container, DetailStoryFragment())
         }
     }
 }

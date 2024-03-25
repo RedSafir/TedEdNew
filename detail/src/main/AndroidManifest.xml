@@ -3,8 +3,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <dist:module
-        dist:instant="false"
-        dist:title="@string/title_detail">
+        dist:instant="false">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
@@ -12,7 +11,7 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
+    <application android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".DetailStoryActivity"
             android:exported="true">

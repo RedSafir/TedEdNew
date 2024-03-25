@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">TedEdNew</string>
-    <string name="title_sign_up">Sign Up</string>
     <string name="title_log_out">Log Out</string>
     <string name="title_change_language">Change Language</string>
     <string name="timeout">Timeout</string>
-    <string name="retry">Try Again</string>
+    <string name="re_try">Try Again</string>
     <string name="title_home">Home</string>
     <string name="title_list_story">List Story</string>
     <string name="title_username">Username</string>
@@ -12,12 +11,6 @@
     <string name="title_email">Email</string>
     <string name="err_password">Length must be more than 8</string>
     <string name="title_password">Password</string>
-    <string name="title_auth">authentication</string>
-    <string name="favorite_button">Favorite Button</string>
-    <string name="title_favorite_story">Favorite Story</string>
-    <string name="title_fav">Favorite</string>
-    <string name="title_detail">DetailStory</string>
-    <string name="title_activity_detail_story">DetailStoryActivity</string>
     <string name="favorite">Favorite</string>
-
+    <string name="main_image">main image</string>
 </resources>

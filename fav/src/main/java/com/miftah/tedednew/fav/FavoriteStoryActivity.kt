@@ -18,7 +18,7 @@ class FavoriteStoryActivity : AppCompatActivity() {
 
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(binding.favFragmentContainer.id, FavoriteStoryFragment())
+            add(R.id.fav_fragment_container, FavoriteStoryFragment())
         }
     }
 }

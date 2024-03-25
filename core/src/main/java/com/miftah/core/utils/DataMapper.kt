@@ -85,7 +85,7 @@ object DataMapper {
         )
     }
 
-    fun LoginResultResponse.toLoginValueResult(): LoginValueResult {
+    private fun LoginResultResponse.toLoginValueResult(): LoginValueResult {
         return LoginValueResult(
             name,
             userId,
@@ -101,7 +101,7 @@ object DataMapper {
         )
     }
 
-    fun ListStoryItemResponse.toListStory(): StoryResult {
+    private fun ListStoryItemResponse.toListStory(): StoryResult {
         return StoryResult(
             photoUrl = this.photoUrl,
             name = this.name,

@@ -1,4 +1,4 @@
-package com.miftah.tedednew.app.view
+package com.miftah.tedednew.auth.view
 
 import android.content.Context
 import android.graphics.Canvas
